@@ -23,18 +23,18 @@ cd C:\Users\Justin\Documents\aios-audit
 git init
 git add .
 git commit -m "Initial Revenue Leak Audit site"
-gh repo create aios-audit --public --source=. --remote=origin --push
-gh api -X POST repos/Ljjaming/aios-audit/pages -f "source[branch]=main" -f "source[path]=/"
+gh repo create revenue-leak-audit --public --source=. --remote=origin --push
+gh api -X POST repos/Ljjaming/revenue-leak-audit/pages -f "source[branch]=main" -f "source[path]=/"
 ```
 
 The site will publish at:
 ```
-https://ljjaming.github.io/aios-audit/
+https://ljjaming.github.io/revenue-leak-audit/
 ```
 
 Allow 1-2 minutes for the first build. Check status:
 ```powershell
-gh api repos/Ljjaming/aios-audit/pages
+gh api repos/Ljjaming/revenue-leak-audit/pages
 ```
 
 ## Updating later
