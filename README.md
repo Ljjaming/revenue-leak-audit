@@ -1,6 +1,6 @@
-# AIOS Audit — Justin Trent
+# Revenue Leak Audit — Justin Trent
 
-Single-page consulting site for the AIOS Audit and Hermes AI Setup offers.
+Single-page consulting site for the Revenue Leak Audit and Hermes AI Setup offers.
 
 ## Files
 - `index.html` — full page markup and copy
@@ -22,7 +22,7 @@ From PowerShell, in this folder:
 cd C:\Users\Justin\Documents\aios-audit
 git init
 git add .
-git commit -m "Initial AIOS Audit site"
+git commit -m "Initial Revenue Leak Audit site"
 gh repo create aios-audit --public --source=. --remote=origin --push
 gh api -X POST repos/Ljjaming/aios-audit/pages -f "source[branch]=main" -f "source[path]=/"
 ```
