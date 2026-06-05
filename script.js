@@ -41,35 +41,35 @@ const lateRevealObserver = new IntersectionObserver(
 );
 document.querySelectorAll('.split-words-late').forEach((el) => lateRevealObserver.observe(el));
 
-// ---------- Photo parallax (mouse + scroll) ----------
-const photoFrame = document.querySelector('.photo-frame');
-let photoMouseX = 0, photoMouseY = 0;
-let photoTargetX = 0, photoTargetY = 0;
-let photoScrollY = 0;
+// ---------- Logo parallax (mouse + scroll) ----------
+const logoMark = document.querySelector('.logo-mark');
+let logoMouseX = 0, logoMouseY = 0;
+let logoTargetX = 0, logoTargetY = 0;
+let logoScrollY = 0;
 
-if (photoFrame) {
+if (logoMark) {
   window.addEventListener('mousemove', (e) => {
     const cx = window.innerWidth / 2;
     const cy = window.innerHeight / 2;
-    photoTargetX = ((e.clientX - cx) / cx) * 6;
-    photoTargetY = ((e.clientY - cy) / cy) * -6;
+    logoTargetX = ((e.clientX - cx) / cx) * 10;
+    logoTargetY = ((e.clientY - cy) / cy) * -10;
   });
 
   window.addEventListener(
     'scroll',
     () => {
-      photoScrollY = Math.min(window.scrollY * 0.18, 120);
+      logoScrollY = Math.min(window.scrollY * 0.15, 100);
     },
     { passive: true }
   );
 
-  function animatePhoto() {
-    photoMouseX += (photoTargetX - photoMouseX) * 0.08;
-    photoMouseY += (photoTargetY - photoMouseY) * 0.08;
-    photoFrame.style.transform = `perspective(1200px) rotateY(${photoMouseX}deg) rotateX(${photoMouseY}deg) translateY(${photoScrollY}px)`;
-    requestAnimationFrame(animatePhoto);
+  function animateLogo() {
+    logoMouseX += (logoTargetX - logoMouseX) * 0.08;
+    logoMouseY += (logoTargetY - logoMouseY) * 0.08;
+    logoMark.style.transform = `perspective(1200px) rotateY(${logoMouseX}deg) rotateX(${logoMouseY}deg) translateY(${logoScrollY}px)`;
+    requestAnimationFrame(animateLogo);
   }
-  animatePhoto();
+  animateLogo();
 }
 
 // ---------- Scroll reveal ----------
