@@ -954,3 +954,82 @@ body { counter-reset: section; }
   .reveal { opacity: 1; transform: none; }
   .cursor-spotlight, .sparkles { display: none; }
 }
+
+/* ---------- Landing-page refactor additions ---------- */
+
+/* AIOS 4-part map: force 2x2 grid for visual balance */
+.aios-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  max-width: 900px;
+  margin-left: 0;
+  margin-right: 0;
+}
+.aios-grid .gap h3 {
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+}
+@media (max-width: 720px) {
+  .aios-grid { grid-template-columns: 1fr !important; }
+}
+
+/* FAQ */
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 820px;
+  margin-top: 1.5rem;
+}
+.faq-item {
+  background: rgba(20, 17, 36, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.15rem 1.4rem;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+.faq-item:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(28, 24, 50, 0.6);
+  transform: translateY(-1px);
+}
+.faq-item h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.005em;
+  background: linear-gradient(120deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+.faq-item p {
+  margin: 0;
+  color: rgba(244, 243, 248, 0.85);
+  font-size: 0.95rem;
+  max-width: none;
+}
+
+/* "Who this is not for" — subtle amber-toned bullets */
+.not-for-list li::before {
+  background: linear-gradient(135deg, #f59e0b, #ef4444) !important;
+}
+.not-for-list li {
+  color: rgba(244, 243, 248, 0.78);
+}
+
+/* Tighten section padding on long pages for readability */
+@media (min-width: 901px) {
+  .section { padding: 4rem 0; }
+}
+
+/* Hero CTA: better wrap on mid widths */
+@media (max-width: 540px) {
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .btn { width: 100%; text-align: center; justify-content: center; }
+}
