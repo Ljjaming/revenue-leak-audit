@@ -1033,3 +1033,193 @@ body { counter-reset: section; }
   .cta-row { flex-direction: column; align-items: stretch; }
   .cta-row .btn { width: 100%; text-align: center; justify-content: center; }
 }
+
+/* ============================================================
+   EXECUTIVE PRESENCE OVERRIDES (Williamson alignment)
+   Applied per "Leading Executive Conversations" principles:
+   strip decoration that competes with the message, sharpen
+   hierarchy, increase whitespace, let typography carry weight.
+   No structural changes, no copy changes, CSS only.
+   ============================================================ */
+
+/* 1. Strip ambient decoration that competes with the message.
+      Williamson: every element must add information. Sparkles and
+      cursor spotlights do not. */
+.sparkles { display: none !important; }
+.cursor-spotlight { display: none !important; }
+
+/* 2. Subdue aurora to ambient depth, not festival.
+      Background should support reading, not perform. */
+.blob-1, .blob-2, .blob-3 {
+  opacity: 0.16;
+  filter: blur(130px);
+  animation-duration: 60s; /* slower, less attention-grabbing */
+}
+.grid-overlay { opacity: 0.4; }
+
+/* 3. Stronger headline typography. Executive presence means
+      the H1 lands without animated gradient gymnastics. */
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-size: clamp(2.9rem, 7vw, 5.5rem);
+}
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* 4. More generous section spacing. Williamson: let the message
+      breathe. Crowded sections read as anxious. */
+.section { padding: 7rem 0; }
+@media (max-width: 900px) {
+  .section { padding: 4.5rem 0; }
+}
+
+/* 5. Gradient text discipline. Currently applied to every H3 in
+      every card, every FAQ question, every accent. Per Williamson,
+      emphasis used everywhere is emphasis nowhere. Restrict to H1
+      and section H2s only. Cards, FAQs, and eyebrows go solid. */
+
+/* Card headings: solid, hierarchical */
+.gap h3,
+.service h3 {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: var(--text);
+  color: var(--text);
+  animation: none;
+}
+
+/* FAQ questions: solid, weight carries emphasis */
+.faq-item h3 {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: var(--text);
+  color: var(--text);
+  animation: none;
+  font-weight: 700;
+}
+
+/* Eyebrows: quieter, deliberate, no gradient */
+.eyebrow {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: var(--text-muted);
+  color: var(--text-muted);
+  animation: none;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  opacity: 0.75;
+}
+
+/* Brand mark in header: static gradient, no animation */
+.brand-name {
+  animation: none;
+  background-size: 100% 100%;
+  background-position: 0 0;
+}
+
+/* Section H2 gradient: keep but static. Williamson: animation
+   that does not carry meaning is noise. */
+.gradient-text {
+  animation: none;
+  background-size: 100% 100%;
+  background-position: 0 0;
+}
+
+/* Hero H1 retains gradient. Single point of motion allowed on
+   the hero only because it is the page's primary message. */
+.hero-text .gradient-text.split-words {
+  animation: gradientShift 12s ease infinite; /* slow, ambient */
+  background-size: 200% 200%;
+}
+
+/* 6. CTA buttons: confidence, not animation. Static gradient,
+      simpler glow, no magnetic gimmicks (handled in JS-side).
+      Williamson: confidence reads as still, not as wobble. */
+.btn-primary {
+  animation: none;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  box-shadow:
+    0 8px 22px -6px rgba(236, 72, 153, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 32px -8px rgba(236, 72, 153, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+.nav-cta { animation: none; background-size: 100% 100%; }
+.floating-cta { animation: none; background-size: 100% 100%; }
+
+/* 7. Quieter callouts. Conviction reads as deliberate, not ornate. */
+.callout {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--pink);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* 8. Section dividers static. Constant scanning motion at every
+      section boundary is visual noise. */
+.section:not(.section-final)::after {
+  opacity: 0.32;
+  animation: none;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(139, 92, 246, 0.4) 25%,
+      rgba(236, 72, 153, 0.5) 50%,
+      rgba(6, 182, 212, 0.4) 75%,
+      transparent 100%);
+}
+
+/* 9. Quieter scroll progress bar. Functional, not decorative. */
+.scroll-progress {
+  height: 2px;
+  box-shadow: none;
+  animation: none;
+  background: linear-gradient(90deg, var(--violet), var(--pink), var(--cyan));
+}
+
+/* 10. Pill (above hero H1): more deliberate, less decorative. */
+.pill {
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
+}
+
+/* 11. Logo SVG gradient stops: stop the constant color cycle.
+       Static brand mark reads as established, not as in-progress. */
+.logo-svg defs linearGradient stop animate { display: none; }
+
+/* 12. Card hover effects calmer. Subtle lift, no 3D wobble. */
+.gap:hover, .service:hover {
+  transform: translateY(-3px);
+}
+.gap:hover::before, .service:hover::before { opacity: 0.5; }
+
+/* 13. Increase reading rhythm: paragraph spacing inside dense sections */
+.section p { margin-bottom: 1.15rem; }
+.section p:last-child { margin-bottom: 0; }
+
+/* 14. Photo/logo frame quieter. No gradient cycling, no halo pulse. */
+.photo-frame { animation: none; background-size: 100% 100%; }
+.photo-frame::after { animation: none; opacity: 0.18; }
+.logo-mark::before { animation: none; opacity: 0.5; }
+.logo-svg { animation: none; }
+
+/* 15. Tool chip marquee removed visually — too active for an
+       executive page. (Section #stack does not currently exist in
+       active HTML, kept as safety.) */
+.marquee { display: none; }
+
